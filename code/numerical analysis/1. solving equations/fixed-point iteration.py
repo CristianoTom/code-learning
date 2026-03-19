@@ -8,10 +8,14 @@ def judge(x):
 theta = 1e-20
 
 
-
-def f(x):
-    return math.cos(x) - math.sin(x)
+# main function
 def FPI(f, x0, tolerance):
+    '''
+    Find a root of the function f using fixed-point iteration.
+    f: the function for which we are trying to find a root
+    x0: the initial guess for the root
+    tolerance: the desired accuracy of the result
+    '''
     def g(x):
         return x + f(x)
     r =  x0
@@ -23,4 +27,7 @@ def FPI(f, x0, tolerance):
         return round(rn, judge(tolerance))
     else:
         return 'error'
-print(FPI(f, 0, 1e-6))
+
+def f(x):
+    return math.cos(x) - x
+print(f"Root: {FPI(f, 0, 1e-6)}")
