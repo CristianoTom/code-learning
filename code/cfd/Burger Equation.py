@@ -1,7 +1,6 @@
 import numpy as np       
 import matplotlib.pyplot as plt
 import sympy as sp  
-from sympy import init_printing 
 
 x, nu, t = sp.symbols('x nu t')
 phi = (sp.exp(-(x - 4 * t)**2 / (4 * nu * (t + 1))) +
@@ -29,7 +28,7 @@ u = np.asarray([ufunc(t, x0, nu) for x0 in x])
 plt.figure(figsize=(11, 7), dpi=100)
 plt.plot(x, u, marker='o', lw=2)
 plt.xlim([0, 2 * np.pi])
-plt.ylim([0, 10]);
+plt.ylim([0, 10])
 
 for n in range(nt):
     un = u.copy()
@@ -42,4 +41,11 @@ for n in range(nt):
         
 u_analytical = np.asarray([ufunc(nt * dt, xi, nu) for xi in x])
 
+plt.figure(figsize=(11, 7), dpi=100)
+plt.plot(x, u, marker = 'o', lw = 2, label = 'Computational')
+plt.plot(x, u_analytical, label='Analytical')
+plt.xlim([0, 2 * np.pi])
+plt.ylim([0, 10])
+plt.legend()
+plt.show()
 
