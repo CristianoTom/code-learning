@@ -1,19 +1,13 @@
 import math
-def judge(x):
-    ''''Determine the number of decimal places based on the tolerance.'''
-    num = 0
-    while x<1:
-        x = 10*x
-        num += 1
-    return num
+from function import judge
 
 def bisection_method(f, a, b, tolerance):
     '''
-    Find a root of the function f in the interval [a, b] using the bisection method.
-    f: the function for which we are trying to find a root
-    a: the start of the interval
-    b: the end of the interval
-    tolerance: the desired accuracy of the result
+    Find a root of the function f in the interval [a, b] using the bisection method.\n
+    f: the function for which we are trying to find a root.\n
+    a: the start of the interval.\n
+    b: the end of the interval.\n
+    tolerance: the desired accuracy of the result.
     '''
     if f(a) * f(b) >= 0:
         print("The function must have opposite signs at the endpoints.")
