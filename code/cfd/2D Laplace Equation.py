@@ -1,20 +1,6 @@
 import numpy as np
-from matplotlib import pyplot, cm
-
-# define plot function
-def plot2D(x, y, p):
-    fig = pyplot.figure(figsize=(11, 7), dpi=100)
-    ax = fig.add_subplot(111, projection='3d')
-    X, Y = np.meshgrid(x, y)
-    surf = ax.plot_surface(X, Y, p[:], rstride=1, cstride=1, cmap=cm.viridis,
-            linewidth=0, antialiased=False)
-    ax.set_xlim(0, 2)
-    ax.set_ylim(0, 1)
-    ax.view_init(30, 225)
-    ax.set_xlabel('$x$')
-    ax.set_ylabel('$y$')
-    pyplot.show()
-
+import matplotlib.pyplot as plt
+from function import plot2D
 
 # Solve the 2D Laplace equation
 def laplace2d(p, y, dx, dy, l1norm_target):
