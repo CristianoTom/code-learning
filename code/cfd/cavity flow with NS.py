@@ -1,6 +1,19 @@
 import numpy
 import matplotlib.pyplot as plt
 
+def plot(X, Y, p, u, v):
+    fig = plt.figure(figsize=(11,7), dpi=100)
+    # plotting the pressure field as a contour
+    plt.contourf(X, Y, p, alpha=0.5, cmap=plt.cm.viridis)  
+    plt.colorbar()
+    # plotting the pressure field outlines
+    plt.contour(X, Y, p, cmap=plt.cm.viridis)  
+    # plotting velocity field
+    plt.quiver(X[::2, ::2], Y[::2, ::2], u[::2, ::2], v[::2, ::2]) 
+    plt.xlabel('X')
+    plt.ylabel('Y')
+    plt.show()
+
 # Parameters
 nx = 41
 ny = 41
@@ -109,19 +122,8 @@ p = numpy.zeros((ny, nx))
 b = numpy.zeros((ny, nx))
 nt = 100
 u, v, p = cavity_flow(nt, u, v, dt, dx, dy, p, rho, nu)
+plot(X, Y, p, u, v)
 
-
-fig = plt.figure(figsize=(11,7), dpi=100)
-# plotting the pressure field as a contour
-plt.contourf(X, Y, p, alpha=0.5, cmap=plt.cm.viridis)  
-plt.colorbar()
-# plotting the pressure field outlines
-plt.contour(X, Y, p, cmap=plt.cm.viridis)  
-# plotting velocity field
-plt.quiver(X[::2, ::2], Y[::2, ::2], u[::2, ::2], v[::2, ::2]) 
-plt.xlabel('X')
-plt.ylabel('Y')
-plt.show()
 
 u = numpy.zeros((ny, nx))
 v = numpy.zeros((ny, nx))
@@ -129,21 +131,7 @@ p = numpy.zeros((ny, nx))
 b = numpy.zeros((ny, nx))
 nt = 700
 u, v, p = cavity_flow(nt, u, v, dt, dx, dy, p, rho, nu)
-
-
-
-fig = plt.figure(figsize=(11,7), dpi=100)
-# plotting the pressure field as a contour
-plt.contourf(X, Y, p, alpha=0.5, cmap=plt.cm.viridis)  
-plt.colorbar()
-# plotting the pressure field outlines
-plt.contour(X, Y, p, cmap=plt.cm.viridis)  
-# plotting velocity field
-plt.quiver(X[::2, ::2], Y[::2, ::2], u[::2, ::2], v[::2, ::2]) 
-plt.xlabel('X')
-plt.ylabel('Y')
-plt.show()
-
+plot(X, Y, p, u, v)
 
 
 fig = plt.figure(figsize=(11, 7), dpi=100)
@@ -154,3 +142,4 @@ plt.streamplot(X, Y, u, v)
 plt.xlabel('X')
 plt.ylabel('Y')
 plt.show()
+
