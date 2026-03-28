@@ -7,7 +7,7 @@ def nuu(T):     # dynamic viscosity
     return -1.13502e-6 + 8.823987e-8 * T - 5.60362e-11 * T**2
 
 def Dhh(V, A):  # Hydraulic diameter
-    return 4*V/A
+    return (32*1e-6-V)*4/A
 def Ree(T, dh, v):     # Reynolds number
     return rhoo(T)*dh*v/nuu(T)
 def Nuu(h, dh, T):     #  Nusselt number  
@@ -25,8 +25,8 @@ def h_2(rho, a0, v, cp, tpms, h20, a1):   # duishu
     return rho * v * a0 *cp * h20/a1
 
 def solve(v, tpms, t_out, V = 0, A = 1):
-    a0 = 1e-4
-    a1 = 4e-4
+    a0 = 4e-4
+    a1 = 16e-4
     t_in = 293.15
     cp = 1010
     T = (t_in + t_out)/2
@@ -39,18 +39,46 @@ def solve(v, tpms, t_out, V = 0, A = 1):
     Re = Ree(T, Dh, v)
     Nu1 =  Nuu(h1, Dh, T)
     Nu2 =  Nuu(h2, Dh, T)
-    return h1, h2, Nu1, Nu2
+    return h1, h2, Nu1, Nu2, Re
 
 
 
-outcome1 = solve(3, 361.74, 323.97, 3.1102E-6, 0.0055170)
+outcome1 = solve(0.5, 371.07, 365.45, 7.1038E-6, 0.011889)
 print(outcome1)
-outcome2 = solve(3, 361.81, 323.92, 3.0973E-6, 0.0056909)
+outcome2 = solve(1, 369.43, 359.36, 7.1038E-6, 0.011889)
 print(outcome2)
-outcome3 = solve(3, 360.51, 324.35, 3.0720E-6, 0.0059308)
+outcome3 = solve(1.5, 367.96, 355.4, 7.1038E-6, 0.011889)
 print(outcome3)
-outcome4 = solve(3, 360.38, 324.6, 3.0797E-6, 0.0059308)
+outcome4 = solve(2, 366.59, 352.58, 7.1038E-6, 0.011889)
 print(outcome4)
-print(outcome3[0]/outcome1[0])
+outcome4 = solve(2.5, 365.28, 350.46, 7.1038E-6, 0.011889)
+print(outcome4)
+outcome1 = solve(3, 364.02, 348.81, 7.1038E-6, 0.011889)
+print(outcome1)
+outcome2 = solve(3.5, 362.8, 347.46, 7.1038E-6, 0.011889)
+print(outcome2)
+outcome3 = solve(4, 361.62, 346.31, 7.1038E-6, 0.011889)
+print(outcome3)
+outcome4 = solve(4.5, 360.48, 345.29, 7.1038E-6, 0.011889)
+print(outcome4)
+outcome4 = solve(5, 359.38, 344.37, 7.1038E-6, 0.011889)
+print(outcome4)
+print()
 
 
+
+outcome2 = solve(1, 369.41, 358.31, 7.1412E-6, 0.01175)
+print(outcome2)
+
+outcome4 = solve(2, 366.6, 351.27, 7.1412E-6, 0.01175)
+print(outcome4)
+
+outcome1 = solve(3, 364.8, 347.38, 7.1412E-6, 0.01175)
+print(outcome1)
+
+outcome3 = solve(4, 361.76, 344.69, 7.1412E-6, 0.01175)
+print(outcome3)
+
+outcome4 = solve(5, 359.6, 342.64, 7.1412E-6, 0.01175)
+print(outcome4)
+print()
