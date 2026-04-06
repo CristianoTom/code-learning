@@ -43,42 +43,42 @@ def solve(v, tpms, t_out, V = 0, A = 1):
 
 
 
-outcome1 = solve(0.5, 371.07, 365.45, 7.1038E-6, 0.011889)
+outcome1 = solve(0.5, 370.05 , 361.22, 4.5328E-6, 0.011013)
 print(outcome1)
-outcome2 = solve(1, 369.43, 359.36, 7.1038E-6, 0.011889)
+outcome2 = solve(1, 367.77 , 353.48, 4.5328E-6, 0.011013)
 print(outcome2)
-outcome3 = solve(1.5, 367.96, 355.4, 7.1038E-6, 0.011889)
+outcome3 = solve(1.5,365.86 , 348.45,4.5328E-6, 0.011013)
 print(outcome3)
-outcome4 = solve(2, 366.59, 352.58, 7.1038E-6, 0.011889)
+outcome4 = solve(2, 364.16 , 345.09, 4.5328E-6, 0.011013)
 print(outcome4)
-outcome4 = solve(2.5, 365.28, 350.46, 7.1038E-6, 0.011889)
+outcome4 = solve(2.5, 362.61 , 342.39, 4.5328E-6, 0.011013)
 print(outcome4)
-outcome1 = solve(3, 364.02, 348.81, 7.1038E-6, 0.011889)
+outcome1 = solve(3, 361.2 , 340.37, 4.5328E-6, 0.011013)
 print(outcome1)
-outcome2 = solve(3.5, 362.8, 347.46, 7.1038E-6, 0.011889)
+outcome2 = solve(3.5, 361.41, 348, 4.5328E-6, 0.011013)
 print(outcome2)
-outcome3 = solve(4, 361.62, 346.31, 7.1038E-6, 0.011889)
+outcome3 = solve(4, 358.6, 336.95, 4.5328E-6, 0.011013)
 print(outcome3)
-outcome4 = solve(4.5, 360.48, 345.29, 7.1038E-6, 0.011889)
+outcome4 = solve(4.5, 357.35,335.78, 4.5328E-6, 0.011013)
 print(outcome4)
-outcome4 = solve(5, 359.38, 344.37, 7.1038E-6, 0.011889)
+outcome4 = solve(5,356.15, 334.82, 4.5328E-6, 0.011013)
 print(outcome4)
 print()
 
 
 
-outcome2 = solve(1, 369.41, 358.31, 7.1412E-6, 0.01175)
+outcome2 = solve(3, 364.72, 344.16, 7.0514E-6, 0.011026)
 print(outcome2)
 
-outcome4 = solve(2, 366.6, 351.27, 7.1412E-6, 0.01175)
+outcome4 = solve(3, 362.3, 340.19, 4.9692E-6, 0.010739)
 print(outcome4)
 
-outcome1 = solve(3, 364.8, 347.38, 7.1412E-6, 0.01175)
+outcome1 = solve(3, 360.35, 338.1, 3.959E-6, 0.010588)
 print(outcome1)
 
-outcome3 = solve(4, 361.76, 344.69, 7.1412E-6, 0.01175)
+outcome3 = solve(3, 357.04, 334.97, 2.876e-6, 0.010414)
 print(outcome3)
 
-outcome4 = solve(5, 359.6, 342.64, 7.1412E-6, 0.01175)
+outcome4 = solve(3, 361.91, 341.32, 5.0883E-6, 0.011158)
 print(outcome4)
 print()
