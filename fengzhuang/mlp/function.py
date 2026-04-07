@@ -3,6 +3,17 @@ import torch
 import torch.nn as nn
 from torch.utils import data
 import torch.nn.functional as F
+import pandas as pd
+from pathlib import Path
+
+
+def read_csv(file_name):
+    """读取csv文件,返回特征和标签"""
+    PATH = Path(__file__).parent.resolve()
+    data = pd.read_csv(PATH / 'data' / file_name, header=None)
+    data = data.values
+    features = torch.tensor(data[:, :], dtype=torch.float32)
+    return features
 
 def recognize(ls):
     """识别网络结构,将网络结构转换为线性层的输入输出"""
@@ -36,6 +47,7 @@ def load_array(data_arrays, batch_size, is_train=True):
 
 def train(net, features, labels, batch_size, num_epochs, lr):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    print(f'Training on {device}')
     net.to(device)
     loss = nn.MSELoss()
     trainer = torch.optim.SGD(net.parameters(), lr=lr)
@@ -43,9 +55,19 @@ def train(net, features, labels, batch_size, num_epochs, lr):
     for epoch in range(num_epochs):
         net.train()
         for X, y in data_iter:
-            l = loss(net(X) ,y)
+            X = X.to(device)
+            y = y.to(device)
+            l = loss(net(X), y)
             trainer.zero_grad()
             l.backward()
             trainer.step()
-        l = loss(net(features), labels)
+        with torch.no_grad():
+            l = loss(net(features.to(device)), labels.to(device))
         print(f'epoch {epoch + 1}, loss {l:f}')
+
+def use_net(net, test):
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    net = net.to(device).eval()
+    test = test.to(device)
+    with torch.no_grad():
+        return net(test)

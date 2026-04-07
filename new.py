@@ -79,6 +79,6 @@ print(outcome1)
 outcome3 = solve(3, 357.04, 334.97, 2.876e-6, 0.010414)
 print(outcome3)
 
-outcome4 = solve(3, 361.91, 341.32, 5.0883E-6, 0.011158)
+outcome4 = solve(3, 362.5, 343, 5.3751E-6, 0.011158)
 print(outcome4)
 print()
