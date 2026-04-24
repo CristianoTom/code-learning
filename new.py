@@ -73,12 +73,13 @@ print(outcome2)
 outcome4 = solve(3, 362.3, 342.42, 6.5773E-6, 0.011754)
 print(outcome4)
 
-outcome1 = solve(3, 361.52, 341.46, 5.9695E-6, 0.011661)
+outcome1 = solve(3.5,	362.52	,339.85	,6.4979e-6	,0.011025)
 print(outcome1)
 
-outcome3 = solve(3, 361.57, 343.51, 6.3983e-6, 0.012149)
+outcome3 = solve(4.5,	359.16	,337.33	,6.4979e-6	,0.011025)
 print(outcome3)
 
-outcome4 = solve(3, 362.48, 342.05, 6.5211E-6, 0.011604)
+outcome4 = solve(3,	362.36	,342.42	,6.5773e-6	,0.011754)
+
 print(outcome4)
 print()
