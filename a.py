@@ -1,42 +1,63 @@
-import matplotlib.pyplot as plt
+import argparse
+
 import numpy as np
 
-# 1. 精准构造数据点 (对应图1的阶梯感和数值)
-epochs = np.array([1, 1.2, 1.3, 2, 2.2, 3, 3.2, 4, 4.2, 5, 5.2, 6, 6.3, 7, 7.2, 8, 8.5, 9, 9.2, 10])
 
-# Train Loss: 明显的台阶下降
-train_loss = [0.5, 0.35, 0.25, 0.25, 0.18, 0.18, 0.13, 0.14, 0.09, 0.10, 0.06, 0.07, 0.05, 0.05, 0.03, 0.03, 0.02, 0.02, 0.01, 0.01]
+def sample_centers(*, cell_length: float, step: float) -> tuple[np.ndarray, np.ndarray]:
+    half = float(cell_length) * 0.5
+    start = -half + float(step) * 0.5
+    x = np.arange(start, half, float(step), dtype=np.float32)
+    y = np.arange(start, half, float(step), dtype=np.float32)
+    return x, y
 
-# Train Acc: 虚线，在 0.85 到 1.0 之间
-train_acc = [0.82, 0.90, 0.90, 0.91, 0.93, 0.93, 0.95, 0.95, 0.96, 0.96, 0.98, 0.97, 0.98, 0.98, 0.99, 0.99, 0.995, 0.995, 0.998, 1.0]
 
-# Test Acc: 点划线，在 0.8 到 0.9 之间有波动
-test_acc = [0.86, 0.87, 0.87, 0.90, 0.88, 0.81, 0.82, 0.85, 0.86, 0.90, 0.87, 0.83, 0.84, 0.86, 0.86, 0.85, 0.86, 0.91, 0.92, 0.92]
+def field_value(x: np.ndarray, y: np.ndarray, *, w: float, C: float) -> np.ndarray:
+    w_f = float(w)
+    return np.sin(w_f * x) * np.cos(w_f * y) + np.sin(w_f * y) + np.cos(w_f * x) - float(C)
 
-# 2. 设置图表风格
-plt.figure(figsize=(5, 4), dpi=120)
-plt.rcParams['axes.linewidth'] = 1.5  # 边框加粗
 
-# 3. 绘制曲线 (线宽和颜色严格对应)
-plt.plot(epochs, train_loss, label='train loss', color='#1f77b4', linewidth=2)
-plt.plot(epochs, train_acc, label='train acc', color='m', linestyle='--', linewidth=2)
-plt.plot(epochs, test_acc, label='test acc', color='g', linestyle='-.', linewidth=2)
+def draw_binary_pattern(*, cell_length: float, step: float, w: float, C: float, save_path: str | None) -> None:
+    import matplotlib
 
-# 4. 坐标轴范围与刻度 (完全匹配原图)
-plt.xlim(1, 10)
-plt.ylim(-0.04, 1.05)
-plt.xticks([2, 4, 6, 8, 10], fontsize=13)
-plt.yticks([0.0, 0.2, 0.4, 0.6, 0.8, 1.0], fontsize=13)
+    matplotlib.use("TkAgg", force=True)
+    import matplotlib.pyplot as plt
 
-# 5. 细节处理：网格与标签
-plt.xlabel('epoch', fontsize=14)
-plt.grid(True, linestyle='-', linewidth=1.0, color='#C0C0C0') # 深色实线网格
+    x, y = sample_centers(cell_length=cell_length, step=step)
+    xx, yy = np.meshgrid(x, y, indexing="xy")
+    f = field_value(xx, yy, w=w, C=C)
+    mask_black = f > 0.0
+    img = (~mask_black).astype(np.float32)
 
-# 6. 图例 (位置与透明度)
-plt.legend(loc='center right', fontsize=13, framealpha=0.8, edgecolor='#D3D3D3')
+    half = float(cell_length) * 0.5
+    plt.figure(figsize=(6, 6), dpi=150)
+    plt.imshow(
+        img,
+        cmap="gray",
+        origin="lower",
+        extent=(-half, half, -half, half),
+        interpolation="nearest",
+    )
+    plt.axis("equal")
+    plt.axis("off")
+    plt.title(f"sin(wx)cos(wy)+sin(wy)+cos(wx)-C, w={w:g}, C={C:g}, step={step:g}")
 
-# 7. 自动调整布局，去除白边
-plt.tight_layout()
+    if save_path:
+        plt.savefig(save_path, bbox_inches="tight", pad_inches=0.0)
+    plt.show()
 
-# 显示结果
-plt.show()
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--cell", type=float, default=40.0)
+    parser.add_argument("--step", type=float, default=0.25)
+    parser.add_argument("--w", type=float, default=float(2.0 * np.pi / 20.0))
+    parser.add_argument("--C", type=float, default=0.2)
+    parser.add_argument("--save", type=str, default="")
+    args = parser.parse_args()
+
+    save_path = args.save.strip() or None
+    draw_binary_pattern(cell_length=args.cell, step=args.step, w=args.w, C=args.C, save_path=save_path)
+
+
+if __name__ == "__main__":
+    main()

@@ -67,19 +67,30 @@ print()
 
 
 
-outcome2 = solve(3, 362.5, 341.35, 6.367E-6, 0.011137)
+outcome2 = solve(3, 361.85	,340.86, 5.8481E-6, 0.010925)
 print(outcome2)
 
-outcome4 = solve(3, 362.3, 342.42, 6.5773E-6, 0.011754)
+outcome4 = solve(3, 363.43, 343.35, 6.005E-6, 0.010886)
 print(outcome4)
 
-outcome1 = solve(3.5,	362.52	,339.85	,6.4979e-6	,0.011025)
+outcome1 = solve(3,361.93,	347.89	,5.7894e-6,	0.012882)
 print(outcome1)
 
-outcome3 = solve(4.5,	359.16	,337.33	,6.4979e-6	,0.011025)
+outcome3 = solve(3,	360.83	,344.06	,5.8239e-6	,0.012648)
 print(outcome3)
 
-outcome4 = solve(3,	362.36	,342.42	,6.5773e-6	,0.011754)
+outcome4 = solve(3,	360.37	,344.57	,5.7848e-6	,0.012887)
 
 print(outcome4)
 print()
+
+
+
+
+outcome1 = solve(0.5, 370.4, 363.62, 6.3983e-6, 0.012149)
+outcome2 = solve(1.0, 368.37, 356.17, 6.3983e-6, 0.012149)
+outcome3 = solve(1.5, 366.59, 351.51, 6.3983e-6, 0.012149)
+outcome4 = solve(2.0, 365.06, 347.88, 6.3983e-6, 0.012149)
+outcome5 = solve(3, 357.08, 337.55, 3.4148e-6, 0.0097258)
+outcome6 = solve(3.0, 358.29, 338.02, 3.6641e-6, 0.010187)
+print(outcome1, outcome2, outcome3, outcome4, outcome5, outcome6, sep='\n')
