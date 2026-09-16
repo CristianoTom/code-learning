@@ -75,3 +75,7 @@ outcome6 = solve(3, 362.42, 340.94, 6.2184, 0.010907, 183.61)
 
 print(outcome1, outcome2, outcome3, outcome4, outcome5,
       outcome6, sep='\n')
+
+
+outcome6 = solve(3, 362.42, 340.94, 6.2184, 0.010907, 183.61)
+

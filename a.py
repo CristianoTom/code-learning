@@ -13,7 +13,7 @@ def sample_centers(*, cell_length: float, step: float) -> tuple[np.ndarray, np.n
 
 def field_value(x: np.ndarray, y: np.ndarray, *, w: float, C: float) -> np.ndarray:
     w_f = float(w)
-    return np.sin(w_f * x) * np.cos(w_f * y) + np.sin(w_f * y) + np.cos(w_f * x) - float(C)
+    return -np.abs(np.sin(w_f * x) * np.cos(w_f * y) + np.sin(w_f * y) + np.cos(w_f * x)) + float(C)
 
 
 def draw_pattern(
@@ -42,12 +42,26 @@ def draw_pattern(
 
     x, y = sample_centers(cell_length=cell_length, step=step)
     xx, yy = np.meshgrid(x, y, indexing="xy")
-    f = field_value(xx, yy, w=w, C=C)
+    f_raw = field_value(xx, yy, w=w, C=C)
+    f_plot = f_raw
+    if mode in ("heat", "contour"):
+        absmax_raw = float(np.nanmax(np.abs(f_raw)))
+        eps = max(1e-12, absmax_raw * 1e-6)
+        inside = f_raw > 0.0
+        boundary = np.abs(f_raw) <= eps
+        boundary[1:, :] |= inside[1:, :] != inside[:-1, :]
+        boundary[:-1, :] |= inside[:-1, :] != inside[1:, :]
+        boundary[:, 1:] |= inside[:, 1:] != inside[:, :-1]
+        boundary[:, :-1] |= inside[:, :-1] != inside[:, 1:]
+        fill_mask = inside & ~boundary
+        if np.any(fill_mask):
+            f_plot = f_raw.copy()
+            f_plot[fill_mask] = float(np.nanmax(f_raw))
 
     half = float(cell_length) * 0.5
     plt.figure(figsize=(6, 6), dpi=150)
     if mode == "binary":
-        img = (~(f > 0.0)).astype(np.float32)
+        img = (~(f_raw > 0.0)).astype(np.float32)
         plt.imshow(
             img,
             cmap="gray",
@@ -57,11 +71,11 @@ def draw_pattern(
         )
     elif mode == "heat":
         if vmin is None and vmax is None:
-            absmax = float(np.nanmax(np.abs(f)))
+            absmax = float(np.nanmax(np.abs(f_raw)))
             if absmax > 0:
                 vmin, vmax = -absmax, absmax
         im = plt.imshow(
-            f,
+            f_plot,
             cmap=cmap,
             origin="lower",
             extent=(-half, half, -half, half),
@@ -73,23 +87,27 @@ def draw_pattern(
             plt.colorbar(im, fraction=0.046, pad=0.04)
     elif mode == "contour":
         if vmin is None and vmax is None:
-            absmax = float(np.nanmax(np.abs(f)))
+            absmax = float(np.nanmax(np.abs(f_raw)))
             if absmax > 0:
                 vmin, vmax = -absmax, absmax
         cs = plt.contourf(
             xx,
             yy,
-            f,
+            f_plot,
             levels=int(levels),
             cmap=cmap,
             vmin=vmin,
             vmax=vmax,
         )
-        plt.contour(xx, yy, f, levels=[0.0], colors="k", linewidths=0.7)
         if colorbar:
             plt.colorbar(cs, fraction=0.046, pad=0.04)
     else:
         raise ValueError(f"未知 mode: {mode!r}，可选: binary/heat/contour")
+
+    fmin = float(np.nanmin(f_raw))
+    fmax = float(np.nanmax(f_raw))
+    if fmin <= 0.0 <= fmax:
+        plt.contour(xx, yy, f_raw, levels=[0.0], colors="k", linewidths=1.6)
 
     plt.axis("equal")
     plt.axis("off")
@@ -102,14 +120,14 @@ def draw_pattern(
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--cell", type=float, default=20.0)
-    parser.add_argument("--step", type=float, default=0.4)
+    parser.add_argument("--cell", type=float, default=40.0)
+    parser.add_argument("--step", type=float, default=0.5)
     parser.add_argument("--w", type=float, default=float(2.0 * np.pi / 20.0))
-    parser.add_argument("--C", type=float, default=0.3)
-    parser.add_argument("--mode", type=str, default="heat", choices=("binary", "heat", "contour"))
+    parser.add_argument("--C", type=float, default=0.4)
+    parser.add_argument("--mode", type=str, default="contour", choices=("binary", "heat", "contour"))
     parser.add_argument("--cmap", type=str, default="RdBu_r")
-    parser.add_argument("--vmin", type=float, default=-2)
-    parser.add_argument("--vmax", type=float, default=2)
+    parser.add_argument("--vmin", type=float, default=-1)
+    parser.add_argument("--vmax", type=float, default=1)
     parser.add_argument("--levels", type=int, default=30)
     parser.add_argument("--colorbar", action="store_true")
     parser.add_argument("--save", type=str, default="")
