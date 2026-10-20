@@ -1,0 +1,58 @@
+[
+  {
+    "notebook": "00_operator_and_pde_basics.ipynb",
+    "mode": "smoke",
+    "status": "passed",
+    "stdout": "device: cpu | smoke: True\nf and u shape: torch.Size([4, 65]) torch.Size([4, 65])\nN=17, relative L2=0.005506\nN=33, relative L2=0.001359\nN=65, relative L2=0.000339\nN=129, relative L2=0.000085\n",
+    "figures": 2,
+    "seconds": 8.64
+  },
+  {
+    "notebook": "01_mlp_poisson_baseline.ipynb",
+    "mode": "smoke",
+    "status": "passed",
+    "stdout": "device: cpu | smoke: True\ntorch.Size([32, 33]) torch.Size([32, 33])\nparameters: 8481\nepoch    1 | train MSE 5.550e-01 | val relative L2 0.986\nepoch    2 | train MSE 5.093e-01 | val relative L2 0.953\nTest relative L2: mean=1.0204, median=0.9609, max=1.2823\nboundary max error: 0.0\nTest relative L2: mean=1.0904, median=1.0484, max=1.5207\nin-distribution mean: 1.0203732252120972 OOD mean: 1.0904288291931152\n",
+    "figures": 4,
+    "seconds": 11.13
+  },
+  {
+    "notebook": "02_deeponet_poisson.ipynb",
+    "mode": "smoke",
+    "status": "passed",
+    "stdout": "device: cpu | smoke: True\nepoch    1 | train MSE 4.381e-01 | val relative L2 0.504\nepoch    2 | train MSE 1.484e-01 | val relative L2 0.341\nTest relative L2: mean=0.6598, median=0.3664, max=1.6368\n33 sensors -> 129 query points\nTest relative L2: mean=0.6497, median=0.3676, max=1.6687\n",
+    "figures": 3,
+    "seconds": 10.27
+  },
+  {
+    "notebook": "03_fno1d_heat.ipynb",
+    "mode": "smoke",
+    "status": "passed",
+    "stdout": "device: cpu | smoke: True\ninitial -> final: torch.Size([32, 64]) torch.Size([32, 64])\nepoch    1 | train MSE 1.023e+00 | val relative L2 1.003\nepoch    2 | train MSE 1.014e+00 | val relative L2 0.997\nTest relative L2: mean=1.0026, median=0.9944, max=1.0490\nTest relative L2: mean=1.0026, median=0.9944, max=1.0490\n64 grid error: 1.0025808811187744 128 grid error: 1.0025807619094849\nTest relative L2: mean=1.0026, median=0.9944, max=1.0490\n",
+    "figures": 4,
+    "seconds": 9.86
+  },
+  {
+    "notebook": "04_fno_burgers.ipynb",
+    "mode": "smoke",
+    "status": "passed",
+    "stdout": "device: cpu | smoke: True\ndata: torch.Size([32, 64]) torch.Size([32, 64])\ntime refinement: 0.0 space refinement: 4.2088935003903316e-08 mean drift: 2.561137080192566e-09\nepoch    1 | train MSE 1.103e-01 | val relative L2 1.241\nepoch    2 | train MSE 1.036e-01 | val relative L2 1.192\nTest relative L2: mean=1.4283, median=1.3092, max=2.0076\nPredicted mean drift: 0.14166390895843506\nReference mean drift: 7.8580342233181e-10\n",
+    "figures": 3,
+    "seconds": 15.67
+  },
+  {
+    "notebook": "05_fno2d_screened_poisson.ipynb",
+    "mode": "smoke",
+    "status": "passed",
+    "stdout": "device: cpu | smoke: True\nbatch,x,y: torch.Size([32, 24, 24])\nepoch    1 | train MSE 1.913e+00 | val relative L2 0.996\nepoch    2 | train MSE 1.896e+00 | val relative L2 0.990\nTest relative L2: mean=0.9894, median=0.9893, max=0.9921\nTest relative L2: mean=0.9894, median=0.9893, max=0.9921\n24x24: 0.9893810153007507 48x48: 0.9893810749053955\n",
+    "figures": 3,
+    "seconds": 11.81
+  },
+  {
+    "notebook": "06_pino_physics_informed.ipynb",
+    "mode": "smoke",
+    "status": "passed",
+    "stdout": "device: cpu | smoke: True\nlabeled: 8 unlabeled: 32 validation: 8 test: 8\nExact solution raw residual RMS: 0.0026991632767021656\nData 1 loss 1.5687682628631592 val 1.0508675575256348\nData 2 loss 1.3597873449325562 val 1.0387768745422363\nPINO 1 loss 2.6969218254089355 val 1.0503122806549072\nPINO 2 loss 2.47890043258667 val 1.0378628969192505\nTest relative L2: mean=1.0114, median=1.0047, max=1.0418\nTest relative L2: mean=1.0111, median=1.0042, max=1.0413\nData relative solution L2 1.0114401578903198 raw relative PDE residual 0.9956932663917542\nPINO relative solution L2 1.0111267566680908 raw relative PDE residual 0.9950870871543884\n",
+    "figures": 2,
+    "seconds": 8.56
+  }
+]

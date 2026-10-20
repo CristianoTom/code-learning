@@ -1,0 +1,108 @@
+{
+  "date": "2026-10-09",
+  "changes": "Markdown theory additions only",
+  "total_notebooks": 11,
+  "total_new_theory_cells": 35,
+  "checks": "nbformat validation, Python AST, identical code/output digest, unique cell ids",
+  "notebooks": [
+    {
+      "notebook": "00_operator_and_pde_basics.ipynb",
+      "theory_cells_added": 3,
+      "theory_characters": 2264,
+      "code_and_outputs_preserved": true,
+      "code_sha256": "7e958c08a746f7a613789f013c0ce10a30a3df5570f61d573f596e8e60ce347a",
+      "code_cells": 3,
+      "saved_figures": 2
+    },
+    {
+      "notebook": "01_mlp_poisson_baseline.ipynb",
+      "theory_cells_added": 3,
+      "theory_characters": 1906,
+      "code_and_outputs_preserved": true,
+      "code_sha256": "e186d463605bdc66ea0369994a2c473d36d2c1e3ede0691d8fbc9fd442e4e6fc",
+      "code_cells": 5,
+      "saved_figures": 4
+    },
+    {
+      "notebook": "02_deeponet_poisson.ipynb",
+      "theory_cells_added": 3,
+      "theory_characters": 1904,
+      "code_and_outputs_preserved": true,
+      "code_sha256": "82f1850f29500d24e4244f823a6d7e76ae90290a17a96d6cc1ac3f5014be79e7",
+      "code_cells": 5,
+      "saved_figures": 3
+    },
+    {
+      "notebook": "03_fno1d_heat.ipynb",
+      "theory_cells_added": 3,
+      "theory_characters": 2238,
+      "code_and_outputs_preserved": true,
+      "code_sha256": "27d53fe724e9ca26b1a28cd9143a761e5c210f7173aa6970a9cba435dff72f8c",
+      "code_cells": 5,
+      "saved_figures": 4
+    },
+    {
+      "notebook": "04_fno_burgers.ipynb",
+      "theory_cells_added": 3,
+      "theory_characters": 1740,
+      "code_and_outputs_preserved": true,
+      "code_sha256": "313d5e8ca152ec527e34f6cbe550b0dc8b8730afaa7e9c3dc0086b6e61a51b9c",
+      "code_cells": 5,
+      "saved_figures": 3
+    },
+    {
+      "notebook": "05_fno2d_screened_poisson.ipynb",
+      "theory_cells_added": 3,
+      "theory_characters": 1736,
+      "code_and_outputs_preserved": true,
+      "code_sha256": "050a7e6c471df2f54478180ad1e6b666ccc76d8c1765d4fced5523ce703a6208",
+      "code_cells": 4,
+      "saved_figures": 3
+    },
+    {
+      "notebook": "06_pino_physics_informed.ipynb",
+      "theory_cells_added": 3,
+      "theory_characters": 1981,
+      "code_and_outputs_preserved": true,
+      "code_sha256": "47c9ac824761607e767d4bd4b38ef02fb3ac707f2d25f8ecf9ce0993bbc390ae",
+      "code_cells": 6,
+      "saved_figures": 2
+    },
+    {
+      "notebook": "07_fno3d_screened_poisson.ipynb",
+      "theory_cells_added": 3,
+      "theory_characters": 1853,
+      "code_and_outputs_preserved": true,
+      "code_sha256": "09a5afb515ced95f2f527cf05f6d2e2423b2429a9765ebb06a0b425e8162d852",
+      "code_cells": 6,
+      "saved_figures": 4
+    },
+    {
+      "notebook": "08_parametric_fno3d_heat.ipynb",
+      "theory_cells_added": 3,
+      "theory_characters": 1551,
+      "code_and_outputs_preserved": true,
+      "code_sha256": "db826530748785f02641c8510341df5e54b4606e8faf067ca500ca98189160f9",
+      "code_cells": 7,
+      "saved_figures": 4
+    },
+    {
+      "notebook": "09_fno3d_variable_diffusion.ipynb",
+      "theory_cells_added": 4,
+      "theory_characters": 2764,
+      "code_and_outputs_preserved": true,
+      "code_sha256": "6efb44d1722a952fd3cb7ea0eb514ff080e1711bba7e571fb6ebdfaa105d1133",
+      "code_cells": 7,
+      "saved_figures": 3
+    },
+    {
+      "notebook": "10_deeponet3d_continuous_time.ipynb",
+      "theory_cells_added": 4,
+      "theory_characters": 2558,
+      "code_and_outputs_preserved": true,
+      "code_sha256": "3732d510232f85d299a196ac827651600e20d61e3c3ec5ff56f6f232ef2c2f9d",
+      "code_cells": 6,
+      "saved_figures": 3
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+[
+  {
+    "notebook": "07_fno3d_screened_poisson.ipynb",
+    "mode": "smoke",
+    "status": "passed",
+    "stdout": "device: cpu | smoke: True\ninput scalar volumes: torch.Size([16, 8, 8, 8]) training output: torch.Size([16, 8, 8, 8])\nparameters: 14193\nepoch    1 | train MSE 3.032e+00 | val relative L2 0.993\nepoch    2 | train MSE 2.998e+00 | val relative L2 0.987\nTest relative L2: mean=0.9857, median=0.9851, max=0.9873\nTest relative L2: mean=0.9857, median=0.9851, max=0.9873\ncoarse relative L2: 0.9857273101806641 fine: 0.9857273101806641\nOdd-grid check: torch.Size([1, 13, 13, 13])\nRaw relative PDE residual: 0.9825770030593378\n",
+    "figures": 4,
+    "seconds": 21.58
+  },
+  {
+    "notebook": "08_parametric_fno3d_heat.ipynb",
+    "mode": "smoke",
+    "status": "passed",
+    "stdout": "device: cpu | smoke: True\ninput channels u0, nu, T: torch.Size([16, 3, 8, 8, 8])\nreference semigroup / mean / energy checks passed\nepoch    1 | train MSE 1.960e+00 | val relative L2 0.996\nepoch    2 | train MSE 1.946e+00 | val relative L2 0.993\nTest relative L2: mean=0.9895, median=0.9905, max=0.9917\nTest relative L2: mean=0.9890, median=0.9827, max=0.9952\nTest relative L2: mean=0.9895, median=0.9905, max=0.9917\nTest relative L2: mean=0.9381, median=0.9338, max=0.9531\nwithin range: 0.9894891977310181 fine grid: 0.9894893169403076 outside range: 0.9380905032157898\nPrediction mean drift: 0.0022229100577533245\n",
+    "figures": 4,
+    "seconds": 21.36
+  },
+  {
+    "notebook": "09_fno3d_variable_diffusion.ipynb",
+    "mode": "smoke",
+    "status": "passed",
+    "stdout": "device: cpu | smoke: True\ndiscrete manufactured solution: {'iterations': 9, 'max_relative_residual': 2.3785898419549777e-12}\nconstant-a grid: 8 continuous error: 0.052561949728773504\nconstant-a grid: 16 continuous error: 0.012840921139145135\nconstant-a grid: 32 continuous error: 0.003191926868984803\ntraining PCG: {'iterations': 48, 'max_relative_residual': 9.813620787389453e-10} testing PCG: {'iterations': 48, 'max_relative_residual': 8.018412883787995e-10}\ninput [a-1,f/S]: torch.Size([16, 2, 8, 8, 8])\ncoefficient range: 0.7102705240249634 1.2854304313659668\nepoch    1 | train MSE 4.228e+00 | val relative L2 0.999\nepoch    2 | train MSE 4.194e+00 | val relative L2 0.994\nTest relative L2: mean=0.9951, median=0.9941, max=0.9979\nReference discretized PDE residual: 2.8217550308818677e-07\nFNO discretized PDE residual: 0.9924635585018095\nTest relative L2: mean=0.9949, median=0.9938, max=0.9979\nfine reference PCG: {'iterations': 97, 'max_relative_residual': 9.911658122682725e-10}\nreference coarse/fine difference: 0.03768637776374817\nFNO fine-grid error: 0.9949131608009338\n",
+    "figures": 3,
+    "seconds": 19.31
+  },
+  {
+    "notebook": "10_deeponet3d_continuous_time.ipynb",
+    "mode": "smoke",
+    "status": "passed",
+    "stdout": "device: cpu | smoke: True\nsensors: torch.Size([16, 216]) queries: torch.Size([64, 4]) targets: torch.Size([16, 64])\nepoch 1 MSE 2.950456142425537 validation L2 1.036027193069458\nepoch 2 MSE 2.4538137912750244 validation L2 1.0094531774520874\nTest relative L2: mean=0.9845, median=0.9758, max=1.0229\nquery time: 0.0 volume relative L2: 0.9845126867294312\nTest relative L2: mean=0.9862, median=0.9714, max=1.0190\nquery time: 0.07 volume relative L2: 0.9861974716186523\nTest relative L2: mean=1.0012, median=0.9895, max=1.0239\nquery time: 0.19 volume relative L2: 1.001152515411377\nTest relative L2: mean=1.0344, median=1.0468, max=1.0617\nquery time: 0.3 volume relative L2: 1.034364938735962\nAnalytic derivative residual max: 1.1102230246251565e-15\ntest function 0 PDE residual RMS: 2.4519059658050537\ntest function 1 PDE residual RMS: 1.3074997663497925\nTest relative L2: mean=0.9969, median=0.9827, max=1.0242\n",
+    "figures": 3,
+    "seconds": 16.96
+  }
+]
